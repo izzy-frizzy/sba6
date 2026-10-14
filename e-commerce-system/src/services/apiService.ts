@@ -1,19 +1,18 @@
 import { NetworkError } from "../utils/errorHandler";
-import Product from "../models/products"
+import Product from "../models/products";
 
-export const fetchProducts = async(): Promise<Product[]> =>{
+export const fetchProducts = async (): Promise<Product[]> => {
+  try {
+    const response = await fetch("https://dummyjson.com/products");
 
-    try{
-        const response = await fetch("https://dummyjson.com/products");
+    if (!response.ok) {
+      throw new NetworkError("Failed to fetch data on products");
+    }
+    const data = await response.json();
 
-        if(!response.ok){
-            throw new NetworkError("Failed to fetch data on products");
-        }
-        const data = await response.json();
+    const products: Product[] = [];
 
-        const products: Product[] = [];
-
-        for (const product of data.products) {
+    for (const product of data.products) {
       const newProduct = new Product(
         product.id,
         product.title,
@@ -21,18 +20,16 @@ export const fetchProducts = async(): Promise<Product[]> =>{
         product.price,
         product.category,
         product.stock,
-        product.discountPercentage
+        product.discountPercentage,
       );
       products.push(newProduct);
     }
-    return products
-}
-catch(NetworkError){
+    return products;
+  } catch (NetworkError) {
     console.log("Error fetching products:", NetworkError);
     throw NetworkError;
-
-    }
-}
+  }
+};
 //     return fetch('https://dummyjson.com/products/1')
 // .then(response => {
 

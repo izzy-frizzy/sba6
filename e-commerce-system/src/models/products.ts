@@ -14,8 +14,8 @@ export default class Product {
     price: number,
     category: string,
     stock: number,
-    discountPercentage: number)
-     {
+    discountPercentage: number,
+  ) {
     this.id = id;
     this.title = title;
     this.description = description;
@@ -30,6 +30,6 @@ export default class Product {
     console.log(`Price: $${this.price}`);
     console.log(`Category: ${this.category}`);
     console.log(`Stock: ${this.stock}`);
-    console.log(`Discount percentage ${this.discountPercentage}`)
+    console.log(`Discount percentage ${this.discountPercentage}`);
   }
 }
