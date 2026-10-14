@@ -20,7 +20,8 @@ export const fetchProducts = async(): Promise<Product[]> =>{
         product.description,
         product.price,
         product.category,
-        product.stock
+        product.stock,
+        product.discountPercentage
       );
       products.push(newProduct);
     }
@@ -30,7 +31,7 @@ catch(NetworkError){
     console.log("Error fetching products:", NetworkError);
     throw NetworkError;
 
-}
+    }
 }
 //     return fetch('https://dummyjson.com/products/1')
 // .then(response => {

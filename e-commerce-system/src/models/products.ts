@@ -5,6 +5,7 @@ export default class Product {
   price: number;
   category: string;
   stock: number;
+  discountPercentage: number;
 
   constructor(
     id: number,
@@ -12,7 +13,8 @@ export default class Product {
     description: string,
     price: number,
     category: string,
-    stock: number)
+    stock: number,
+    discountPercentage: number)
      {
     this.id = id;
     this.title = title;
@@ -20,6 +22,7 @@ export default class Product {
     this.price = price;
     this.category = category;
     this.stock = stock;
+    this.discountPercentage = discountPercentage;
   }
 
   displayDetails(): void {
@@ -27,5 +30,6 @@ export default class Product {
     console.log(`Price: $${this.price}`);
     console.log(`Category: ${this.category}`);
     console.log(`Stock: ${this.stock}`);
+    console.log(`Discount percentage ${this.discountPercentage}`)
   }
 }

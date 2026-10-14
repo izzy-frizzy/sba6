@@ -1,11 +1,14 @@
 import { fetchProducts } from "./services/apiService";
-import { NetworkError } from "./utils/errorHandler";
+import { calculateDiscount } from "./utils/discountCalculator";
 
 fetchProducts().then(products =>{
     products.forEach(product =>{
+        const discount = calculateDiscount(product);
         product.displayDetails();
+        console.log(`Discount: $${discount.toFixed(2)}`)
     });
 })
-.catch(NetworkError => {
-    console.log (NetworkError.message)
+.catch(error => {
+    console.log (error)
 })
+
