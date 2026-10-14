@@ -26,7 +26,7 @@ export const fetchProducts = async (): Promise<Product[]> => {
     }
     return products;
   } catch (NetworkError) {
-    console.log("Error fetching products:", NetworkError);
+    console.log(NetworkError);
     throw NetworkError;
   }
 };
